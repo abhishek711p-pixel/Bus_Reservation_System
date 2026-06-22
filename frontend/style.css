@@ -293,12 +293,48 @@ tbody tr:last-child td { border-bottom: none; }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Adjust layout for smaller screens */
+/* --- Adjust layout for smaller screens (Mobile Responsive) --- */
 @media (max-width: 768px) {
     .hero-title { font-size: 2.5rem; }
     .hero-content { padding: 0 5%; text-align: center; }
-    .nav-links { display: none; } 
+    
+    /* Navbar fixes */
+    .nav-container { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; width: 100%; }
+    
+    /* Footer fixes */
     .footer-content { flex-direction: column; text-align: center; gap: 2rem; }
+    
+    /* Glass Panel & Containers */
+    .glass-panel { padding: 1.5rem; border-radius: 12px; }
+    .container { width: 95%; margin-top: -2rem; }
+    
+    /* Roles / Landing Page */
+    .role-card { width: 100%; padding: 2rem 1rem; }
+    .landing-header h1 { font-size: 2.2rem; }
+    
+    /* Forms & Controls */
+    .controls { flex-direction: column-reverse; align-items: center; text-align: center; gap: 1rem; }
+    .controls-image { flex: 0 0 auto; max-width: 200px; margin-bottom: 1rem; }
+    .button-group { justify-content: center; flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
+    
+    /* Search Box */
+    .search-box { padding: 1.5rem 1rem; margin: 1rem auto; }
+    #search-form { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .form-group { min-width: 100%; }
+    
+    /* Layouts */
+    .booking-layout { flex-direction: column; gap: 1rem; }
+    .booking-main, .booking-sidebar { min-width: 100%; flex: 1 1 100%; padding: 1.5rem 1rem; }
+    .booking-sidebar { position: static; }
+    
+    /* Tables */
+    th, td { padding: 0.8rem; font-size: 0.85rem; }
+    .results-section h3 { text-align: center; }
+    
+    /* Payments */
+    .payment-methods { flex-direction: column; }
 }
 
 /* --- Footer Section --- */
