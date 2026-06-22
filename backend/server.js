@@ -3,7 +3,7 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const path = require('path');
 
 app.use(cors());
@@ -14,12 +14,13 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 
 // Database connection configuration
-// STUDENTS: Update these credentials if your local MySQL uses a different password!
+// Use Environment Variables for cloud deployment (e.g. Render, Heroku) or default to local credentials
 const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: 'password', // change this to your mysql root password if needed
-  database: 'BusReservationDB'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'password', 
+  database: process.env.DB_NAME || 'BusReservationDB',
+  port: process.env.DB_PORT || 3306
 };
 
 // Route to execute raw SQL (For demonstration of queries)
