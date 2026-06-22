@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Reservation System</title>
+    <link rel="stylesheet" href="style.css?v=5">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 12 10s-6.7.6-8.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M14 17H9"/><path d="M6 14h.01"/><path d="M18 14h.01"/><path d="M10.5 17v4"/><path d="M13.5 17v4"/><path d="M16.5 17v2"/><path d="M7.5 17v2"/></svg>
+                <span class="logo-text">Bus Reservation</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Change Portal</a>
+                <a href="#contact">Contact Us</a>
+                <div class="user-dropdown">
+                    <span>Hello, Boring club</span>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Get Your Ticket Online<br>Easy and Safely</h1>
+        </div>
+    </section>
+
+    <!-- Database Queries Section -->
+    <div class="container">
+        <main class="glass-panel main-panel">
+            <section class="controls">
+                <div class="controls-text">
+                    <h2>What would you like to see?</h2>
+                    <p>Pick a query below, and we'll fetch the data for you.</p>
+                    
+                    <div class="button-group">
+                        <button id="btn-view" class="btn primary">
+                            <span class="btn-content">Show active schedules</span>
+                        </button>
+                        <button id="btn-join" class="btn secondary">
+                            <span class="btn-content">See confirmed passengers</span>
+                        </button>
+                        <button id="btn-agg" class="btn secondary">
+                            <span class="btn-content">View top routes (Revenue > 1000)</span>
+                        </button>
+                        <button id="btn-subquery" class="btn secondary">
+                            <span class="btn-content">Find the priciest booking</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="controls-image">
+                    <img src="toy-bus.png" alt="3D Toy Bus">
+                </div>
+            </section>
+
+            <section class="results-section">
+                <div class="results-header">
+                    <h3>Here are your results</h3>
+                </div>
+                
+                <div id="loading" class="hidden">
+                    <div class="friendly-loader">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <span id="loading-text" class="loader-text">Fetching that for you...</span>
+                </div>
+
+                <div class="table-container">
+                    <table id="results-table">
+                        <thead id="table-head">
+                            <!-- Headers will be injected here -->
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Data will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: boringClub@gmail.com</p>
+                <p>Phone: 9999999999</p>
+            </div>
+            <div class="footer-section">
+                <h4>Headquarters</h4>
+                <p>pwioi banglore , india</p>
+            </div>
+            <div class="footer-section">
+                <h4>Business Hours</h4>
+                <p>Monday - Friday: 8 AM - 8 PM</p>
+                <p>Weekends: 9 AM - 5 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bus Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="employee.js?v=6"></script>
+</body>
+</html>

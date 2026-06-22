@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets - Client Portal</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 12 10s-6.7.6-8.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M14 17H9"/><path d="M6 14h.01"/><path d="M18 14h.01"/><path d="M10.5 17v4"/><path d="M13.5 17v4"/><path d="M16.5 17v2"/><path d="M7.5 17v2"/></svg>
+                <span class="logo-text">Client Portal</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Change Portal</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="hero client-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Book Your Bus Ticket</h1>
+            
+            <div class="search-box glass-panel">
+                <form id="search-form">
+                    <div class="form-group custom-dropdown" id="dropdown-source">
+                        <label>Leaving From</label>
+                        <div class="dropdown-header">
+                            <span class="selected-value">Select City</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                        <ul class="dropdown-list glass-panel hidden"></ul>
+                        <input type="hidden" id="source">
+                    </div>
+                    <div class="form-group custom-dropdown" id="dropdown-destination">
+                        <label>Going To</label>
+                        <div class="dropdown-header">
+                            <span class="selected-value">Select City</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                        <ul class="dropdown-list glass-panel hidden"></ul>
+                        <input type="hidden" id="destination">
+                    </div>
+                    <button type="submit" class="btn primary">Search Buses</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <div class="container">
+        <main class="main-panel">
+            <section class="results-section" id="client-results-section" style="display: none;">
+                <div class="results-header">
+                    <h3>Available Schedules</h3>
+                </div>
+                
+                <div id="loading" class="hidden">
+                    <div class="friendly-loader">
+                        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    </div>
+                    <span class="loader-text">Searching routes...</span>
+                </div>
+
+                <div class="schedules-grid" id="schedules-container">
+                    <!-- Schedule Cards will be injected here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Booking Flow Section (Hidden by default) -->
+    <div id="booking-flow-section" class="container hidden" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="booking-layout">
+            <!-- Main Content Area -->
+            <div class="booking-main glass-panel">
+                
+                <!-- Step 1: Passenger & Tickets -->
+                <div id="step-1-tickets" class="booking-step">
+                    <h2>Passenger Details</h2>
+                    <p class="subtitle" id="booking-route-text">Loading route...</p>
+                    <form id="booking-form" class="mt-20">
+                        <input type="hidden" id="book-schedule-id">
+                        <div class="form-group">
+                            <label for="passenger-email">Contact Email Address</label>
+                            <input type="email" id="passenger-email" placeholder="E.g., rahul@example.com" required>
+                        </div>
+                        <div id="dynamic-passengers-container" class="mt-20">
+                            <!-- Injected by JS -->
+                        </div>
+                        <div class="form-group mt-20">
+                            <label for="ticket-count">Number of Tickets</label>
+                            <select id="ticket-count" required>
+                                <option value="1">1 Ticket</option>
+                                <option value="2">2 Tickets</option>
+                                <option value="3">3 Tickets</option>
+                                <option value="4">4 Tickets</option>
+                                <option value="5">5 Tickets</option>
+                                <option value="6">6 Tickets</option>
+                            </select>
+                        </div>
+                        <div class="step-actions mt-20">
+                            <button type="button" class="btn secondary" id="btn-cancel-booking">Cancel</button>
+                            <button type="button" class="btn primary" id="btn-proceed-payment">Proceed to Pay</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Payment Method -->
+                <div id="step-2-payment" class="booking-step hidden">
+                    <h2>Select Payment Method</h2>
+                    <p class="subtitle">Securely pay for your tickets.</p>
+                    
+                    <div class="payment-methods mt-20">
+                        <label class="payment-card">
+                            <input type="radio" name="payment-method" value="Net Banking" checked>
+                            <div class="card-content">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                <span>Net Banking</span>
+                            </div>
+                        </label>
+                        <label class="payment-card">
+                            <input type="radio" name="payment-method" value="Card Payment">
+                            <div class="card-content">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                <span>Card Payment</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="step-actions mt-20">
+                        <button type="button" class="btn secondary" id="btn-back-tickets">Back</button>
+                        <button type="button" class="btn primary" id="btn-pay-now">Pay Now</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Success -->
+                <div id="step-3-success" class="booking-step hidden text-center">
+                    <div class="success-icon">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h2>Thanks for the payment!</h2>
+                    <p class="subtitle mt-10">Your tickets have been confirmed successfully.</p>
+                    <button type="button" class="btn primary mt-20" id="btn-book-another">Book Another Bus</button>
+                </div>
+
+            </div>
+
+            <!-- Sidebar (Price Details) -->
+            <div class="booking-sidebar glass-panel">
+                <h3>Fare Summary</h3>
+                <div class="price-row mt-20">
+                    <span>Base Fare</span>
+                    <span id="summary-base-fare">₹0</span>
+                </div>
+                <div class="price-row">
+                    <span>Tickets</span>
+                    <span id="summary-tickets-count">x 1</span>
+                </div>
+                <hr class="divider">
+                <div class="price-row total">
+                    <span>Total Amount</span>
+                    <span id="summary-total-fare" class="accent-text">₹0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: boringClub@gmail.com</p>
+                <p>Phone: 9999999999</p>
+            </div>
+            <div class="footer-section">
+                <h4>Headquarters</h4>
+                <p>pwioi banglore , india</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bus Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="client.js?v=6"></script>
+</body>
+</html>
