@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookScheduleId = document.getElementById('book-schedule-id');
     const bookingDetailsText = document.getElementById('booking-details-text');
 
-    const API_BASE = 'http://localhost:3000/api';
+    const API_BASE = '/api';
 
     // Fetch cities on load
     fetch(`${API_BASE}/cities`)

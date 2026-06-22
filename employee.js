@@ -1,4 +1,4 @@
-const backendUrl = 'http://localhost:3000/api/query';
+const backendUrl = '/api/query';
 
 const queries = {
     view: `SELECT * FROM ActiveSchedulesView`,
