@@ -23,6 +23,11 @@ const dbConfig = {
   port: process.env.DB_PORT || 3306
 };
 
+// Cloud databases (like Aiven/Railway) strictly require SSL connections
+if (process.env.DB_HOST && process.env.DB_HOST !== 'localhost') {
+  dbConfig.ssl = { rejectUnauthorized: false };
+}
+
 // Route to execute raw SQL (For demonstration of queries)
 // Note: In a real production app, executing raw SQL from the frontend is insecure,
 // but for a DBMS project to test DQL/Joins/Views, this is the easiest bridge.
